@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour {
 	// PRIVATE INSTANCE VARIABLES ++++++++++++++++++
 	private int _livesValue;
 	private int _scoreValue;
+	private AudioSource _endGameSound;
 
 
 	// PUBLIC INSTANCE VARIABLES (TESTING) +++++++++
@@ -67,6 +68,8 @@ public class GameController : MonoBehaviour {
 		this.FinalScoreLabel.gameObject.SetActive (false);
 		this.RestartButton.gameObject.SetActive (false);
 
+		this._endGameSound = this.GetComponent<AudioSource> ();
+
 		for (int cloudCount = 0; cloudCount < this.cloudNumber; cloudCount++) {
 			Instantiate (this.cloud);
 		}
@@ -85,6 +88,7 @@ public class GameController : MonoBehaviour {
 		this.LivesLabel.gameObject.SetActive (false);
 		this.plane.SetActive (false);
 		this.island.SetActive (false);
+		this._endGameSound.Play ();
 	}
 
 	// PUBLIC METHODS ++++++++++++++++++++++++++++++
