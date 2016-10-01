@@ -6,8 +6,12 @@ public class PlaneController : MonoBehaviour {
 	private Transform _transform;
 
 	// PUBLIC INSTANCE VARIABLES (TESTING ONLY)
+	public GameController gameController;
+
+	[Header("Sounds")]
 	public AudioSource thunderSound;
 	public AudioSource yaySound;
+
 
 	// Use this for initialization
 	void Start () {
@@ -30,10 +34,12 @@ public class PlaneController : MonoBehaviour {
 		
 		if (other.gameObject.CompareTag ("Island")) {
 			this.yaySound.Play ();
+			this.gameController.ScoreValue += 100;
 		}
 
 		if (other.gameObject.CompareTag ("Cloud")) {
 			this.thunderSound.Play ();
+			this.gameController.LivesValue -= 1;
 		}
 
 	}
